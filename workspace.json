@@ -2,6 +2,10 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "expo-lk": "apps/mobile/expo-lk",
+    "expo-lk-e2e": "apps/mobile/tests/expo-lk-e2e",
+    "expo-public": "apps/mobile/expo-public",
+    "expo-public-e2e": "apps/mobile/tests/expo-public-e2e",
     "nest-admin": "apps/server/nest-admin",
     "nest-lk": "apps/server/nest-lk",
     "nest-public": "apps/server/nest-public",

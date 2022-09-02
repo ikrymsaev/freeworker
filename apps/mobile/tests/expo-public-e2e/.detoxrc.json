@@ -1,0 +1,100 @@
+{
+  "testRunner": "jest",
+  "runnerConfig": "jest.config.json",
+  "apps": {
+    "ios.debug": {
+      "type": "ios.app",
+      "build": "cd ../../expo-public/ios && xcodebuild -workspace ExpoPublic.xcworkspace -scheme ExpoPublic -configuration Debug -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 13' -derivedDataPath ./build -quiet",
+      "binaryPath": "../../expo-public/ios/build/Build/Products/Debug-iphonesimulator/ExpoPublic.app"
+    },
+    "ios.release": {
+      "type": "ios.app",
+      "build": "cd ../../expo-public/ios && xcodebuild -workspace ExpoPublic.xcworkspace -scheme ExpoPublic -configuration Release -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 13' -derivedDataPath ./build -quiet",
+      "binaryPath": "../../expo-public/ios/build/Build/Products/Release-iphonesimulator/ExpoPublic.app"
+    },
+
+    "ios.eas": {
+      "type": "ios.app",
+      "build": "npx nx run expo-public:download --platform ios --distribution simulator --output=apps/mobile/expo-public/dist/",
+      "binaryPath": "../../expo-public/dist/ExpoPublic.app"
+    },
+    "ios.local": {
+      "type": "ios.app",
+      "build": "npx nx run expo-public:build --platform ios --profile preview --wait --local --no-interactive --output=apps/expo-public/dist/",
+      "binaryPath": "../expo-public/dist/ExpoPublic.app"
+    },
+
+    "android.debug": {
+      "type": "android.apk",
+      "build": "cd ../../expo-public/android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug",
+      "binaryPath": "../../expo-public/android/app/build/outputs/apk/debug/app-debug.apk"
+    },
+    "android.release": {
+      "type": "android.apk",
+      "build": "cd ../../expo-public/android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release",
+      "binaryPath": "../../expo-public/android/app/build/outputs/apk/release/app-release.apk"
+    },
+
+    "android.eas": {
+      "type": "ios.app",
+      "build": "npx nx run expo-public:download --platform android --output=apps/mobile/expo-public/dist/",
+      "binaryPath": "../../expo-public/dist/ExpoPublic.apk"
+    },
+    "android.local": {
+      "type": "ios.app",
+      "build": "npx nx run expo-public:build --platform android --profile preview --wait --local --no-interactive --output=apps/mobile/expo-public/dist/",
+      "binaryPath": "../../expo-public/dist/ExpoPublic.apk"
+    }
+  },
+  "devices": {
+    "simulator": {
+      "type": "ios.simulator",
+      "device": {
+        "type": "iPhone 13"
+      }
+    },
+    "emulator": {
+      "type": "android.emulator",
+      "device": {
+        "avdName": "Pixel_4a_API_30"
+      }
+    }
+  },
+  "configurations": {
+    "ios.sim.release": {
+      "device": "simulator",
+      "app": "ios.release"
+    },
+    "ios.sim.debug": {
+      "device": "simulator",
+      "app": "ios.debug"
+    },
+
+    "ios.sim.eas": {
+      "device": "simulator",
+      "app": "ios.eas"
+    },
+    "ios.sim.local": {
+      "device": "simulator",
+      "app": "ios.local"
+    },
+
+    "android.emu.release": {
+      "device": "emulator",
+      "app": "android.release"
+    },
+    "android.emu.debug": {
+      "device": "emulator",
+      "app": "android.debug"
+    },
+
+    "android.sim.eas": {
+      "device": "simulator",
+      "app": "android.eas"
+    },
+    "android.sim.local": {
+      "device": "simulator",
+      "app": "android.local"
+    }
+  }
+}
