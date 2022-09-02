@@ -1,5 +1,9 @@
 {
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
-  "projects": {}
+  "projects": {
+    "nest-admin": "apps/server/nest-admin",
+    "nest-lk": "apps/server/nest-lk",
+    "nest-public": "apps/server/nest-public"
+  }
 }
