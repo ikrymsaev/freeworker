@@ -4,6 +4,12 @@
   "projects": {
     "nest-admin": "apps/server/nest-admin",
     "nest-lk": "apps/server/nest-lk",
-    "nest-public": "apps/server/nest-public"
+    "nest-public": "apps/server/nest-public",
+    "vue-admin": "apps/web/vue-admin",
+    "vue-admin-e2e": "apps/web/tests/vue-admin-e2e",
+    "vue-lk": "apps/web/vue-lk",
+    "vue-lk-e2e": "apps/web/tests/vue-lk-e2e",
+    "vue-public": "apps/web/vue-public",
+    "vue-public-e2e": "apps/web/tests/vue-public-e2e"
   }
 }
