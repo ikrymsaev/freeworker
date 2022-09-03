@@ -16,7 +16,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@freeworker/entities": ["libs/entities/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

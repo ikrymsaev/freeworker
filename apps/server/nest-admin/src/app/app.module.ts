@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AtGuard } from '../common/guards';
 import { AuthModule } from './auth/auth.module';
 import { CategoriesModule } from './categories/categories.module';
-import { MastersModule } from './masters/masters.module';
+import { EmployeesModule } from './employees/employees.module';
 import { PersonsModule } from './persons/persons.module';
 
 @Module({
@@ -29,7 +29,7 @@ import { PersonsModule } from './persons/persons.module';
     }),
     AuthModule,
     PersonsModule,
-    MastersModule,
+    EmployeesModule,
     CategoriesModule,
   ],
   controllers: [],

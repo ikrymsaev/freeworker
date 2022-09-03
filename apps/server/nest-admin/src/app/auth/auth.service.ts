@@ -1,12 +1,12 @@
+import { PersonEntity } from '@freeworker/entities';
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as argon from 'argon2';
-import { PersonEntity } from 'src/entities/person.entity';
 import { Not, Repository } from 'typeorm';
 
-import { SignInDto, SignUpDto } from './dto';
+import { SignInDto, SignUpDto } from './dto/auth.dto';
 import { JwtPayload, Tokens } from './types';
 
 @Injectable()

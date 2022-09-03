@@ -4,6 +4,7 @@
     "outDir": "../../dist/out-tsc",
     "baseUrl": "./",
     "paths": {
+      "@freeworker/entities": ["../../../libs/entities/src/index.ts"],
       "src/*": ["./src/*"]
     },
     "module": "commonjs",

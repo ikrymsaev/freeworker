@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { MasterEntity } from './masters.entity';
+import { EmployeeEntity } from './employee.entity';
 
 @Entity('categories')
 export class CategoryEntity {
@@ -19,6 +19,6 @@ export class CategoryEntity {
   @Column({ nullable: true })
   description: string;
 
-  @OneToMany(() => MasterEntity, (master) => master.category)
-  masters: MasterEntity[];
+  @OneToMany(() => EmployeeEntity, (employee) => employee.category)
+  employees: EmployeeEntity[];
 }

@@ -1,7 +1,7 @@
+import { CategoryEntity } from '@freeworker/entities';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CategoryEntity } from '../../entities/category.entity';
 import { CategoryDto } from './dto/category.dto';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class CategoriesService {
   async getAll() {
     const result = await this.categoriesRepository.find({
       relations: {
-        masters: true,
+        employees: true,
       },
     });
     return result;
@@ -24,7 +24,7 @@ export class CategoriesService {
     const result = await this.categoriesRepository.findOne({
       where: { id },
       relations: {
-        masters: true,
+        employees: true,
       },
     });
     return result;

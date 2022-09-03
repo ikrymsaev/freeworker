@@ -1,7 +1,7 @@
+import { PersonEntity } from '@freeworker/entities';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { PersonEntity } from '../../entities/person.entity';
 import { CreatePersonDto } from './dto/person.dto';
 
 @Injectable()

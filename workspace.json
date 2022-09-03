@@ -2,6 +2,7 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "entities": "libs/entities",
     "expo-lk": "apps/mobile/expo-lk",
     "expo-lk-e2e": "apps/mobile/tests/expo-lk-e2e",
     "expo-public": "apps/mobile/expo-public",

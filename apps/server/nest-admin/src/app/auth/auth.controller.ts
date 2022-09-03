@@ -11,7 +11,7 @@ import {
 import { Response } from 'express';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { SignInDto, SignUpDto } from './dto';
+import { SignInDto, SignUpDto } from './dto/auth.dto';
 import { Tokens } from './types';
 import { GetCurrentUser, GetCurrentUserId, Public } from 'src/common/decorators';
 import { RtGuard } from 'src/common/guards';
@@ -87,4 +87,3 @@ export class AuthController {
     return tokens;
   }
 }
-

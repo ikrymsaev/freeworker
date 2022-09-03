@@ -5,7 +5,7 @@ import { CreatePersonDto } from './dto/person.dto';
 import { PersonsService } from './persons.service';
 
 @ApiTags('Пользователи')
-@Controller('api/users')
+@Controller('api/persons')
 export class PersonsController {
   constructor(private personsService: PersonsService) {}
 

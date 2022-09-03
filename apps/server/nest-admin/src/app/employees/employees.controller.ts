@@ -1,33 +1,33 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Public } from 'src/common/decorators';
-import { CreateMasterDto } from './dto/master.dto';
-import { MastersService } from './masters.service';
+import { CreateEmployeeDto } from './dto/employee.dto';
+import { EmployeesService } from './employees.service';
 
 @ApiTags('Мастера')
 @Controller('api/masters')
-export class MastersController {
-  constructor(private mastersService: MastersService) {}
+export class EmployeesController {
+  constructor(private employeesService: EmployeesService) {}
 
   @Public()
   @Get()
   @ApiOperation({ summary: 'Получить всех мастеров' })
   getAll() {
-    return this.mastersService.getAll();
+    return this.employeesService.getAll();
   }
 
   @Public()
   @ApiOperation({ summary: 'Получить мастера по id' })
   @Get('/:id')
   getById(@Param() params: { id: string }) {
-    return this.mastersService.getById(Number(params.id));
+    return this.employeesService.getById(Number(params.id));
   }
 
   @Public()
   @ApiOperation({ summary: 'Добавить мастера' })
-  @ApiBody({ type: [CreateMasterDto] })
+  @ApiBody({ type: [CreateEmployeeDto] })
   @Post()
-  create(@Body() createMasterDto: CreateMasterDto) {
-    return this.mastersService.create(createMasterDto);
+  create(@Body() createEmployeeDto: CreateEmployeeDto) {
+    return this.employeesService.create(createEmployeeDto);
   }
 }
