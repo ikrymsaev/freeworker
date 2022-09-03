@@ -54,3 +54,4 @@ web-build/
 
 apps/expo-lk-e2e/artifacts
 apps/expo-public-e2e/artifacts
+apps/server/db/pgdata
