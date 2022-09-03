@@ -11,7 +11,7 @@ import {
 import { Response } from 'express';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { AuthDto } from './dto';
+import { SignInDto, SignUpDto } from './dto';
 import { Tokens } from './types';
 import { GetCurrentUser, GetCurrentUserId, Public } from 'src/common/decorators';
 import { RtGuard } from 'src/common/guards';
@@ -26,7 +26,7 @@ export class AuthController {
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Зарегистрироваться' })
   async signupLocal(
-    @Body() dto: AuthDto,
+    @Body() dto: SignUpDto,
     @Res({ passthrough: true }) response: Response,
   ): Promise<Tokens> {
     const tokens = await this.authService.signupLocal(dto);
@@ -41,7 +41,7 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Залогиниться' })
   async signinLocal(
-    @Body() dto: AuthDto,
+    @Body() dto: SignInDto,
     @Res({ passthrough: true }) response: Response,
   ): Promise<Tokens> {
     const tokens = await this.authService.signinLocal(dto);
@@ -53,6 +53,7 @@ export class AuthController {
     }
   }
 
+  @Public()
   @Post('logout')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Выйти' })

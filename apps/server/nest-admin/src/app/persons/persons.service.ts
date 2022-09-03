@@ -1,0 +1,21 @@
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { PersonEntity } from '../../entities/person.entity';
+import { CreatePersonDto } from './dto/person.dto';
+
+@Injectable()
+export class PersonsService {
+  constructor(
+    @InjectRepository(PersonEntity)
+    private personsRepository: Repository<PersonEntity>,
+  ) {}
+  /** Получить всех пользователей. */
+  async getAllPersons(): Promise<PersonEntity[]> {
+    return await this.personsRepository.find();
+  }
+  /** Добавить пользователя. */
+  async createPerson(createPersonDto: CreatePersonDto): Promise<PersonEntity> {
+    return await this.personsRepository.save({...createPersonDto});
+  }
+}

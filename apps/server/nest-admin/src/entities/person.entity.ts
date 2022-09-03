@@ -7,24 +7,35 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('users')
-export class UserEntity {
+@Entity('persons')
+export class PersonEntity {
   @ApiProperty({ example: '1', description: 'Уникальный идентификатор' })
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ApiProperty({ example: 'user@mail.ru', description: 'Почтовый адрес' })
+  @Column()
+  @ApiProperty({ example: 'Иван', description: 'Имя' })
+  firstName: string;
+
+  @Column()
+  @ApiProperty({ example: 'Петров', description: 'Фамилия' })
+  lastName: string;
+
+  @ApiProperty({ example: 'pussyDestroyer666', description: 'Логин' })
+  @Column({ unique: true })
+  login: string;
+
+  @ApiProperty({ example: 'pussyDestroyer666@gmail.com', description: 'Электронная почта' })
   @Column({ unique: true })
   email: string;
+
+  @ApiProperty({ example: '+79998887766', description: 'Номер телефона' })
+  @Column()
+  phone: string;
+
   @ApiProperty({ example: '12345qwerty', description: 'Пароль' })
   @Column()
   password: string;
-  @ApiProperty({ example: 'pussyDestroyer666', description: 'Никнейм' })
-  @Column({ unique: true })
-  nickname: string;
-  @ApiProperty({ example: 'Василий Пупкин', description: 'Имя' })
-  @Column({ nullable: true })
-  name: string;
 
   @CreateDateColumn()
   createdAt: Date;

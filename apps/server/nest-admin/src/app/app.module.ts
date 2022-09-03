@@ -6,7 +6,7 @@ import { AtGuard } from '../common/guards';
 import { AuthModule } from './auth/auth.module';
 import { CategoriesModule } from './categories/categories.module';
 import { MastersModule } from './masters/masters.module';
-import { UsersModule } from './users/users.module';
+import { PersonsModule } from './persons/persons.module';
 
 @Module({
   imports: [
@@ -28,7 +28,7 @@ import { UsersModule } from './users/users.module';
       }),
     }),
     AuthModule,
-    UsersModule,
+    PersonsModule,
     MastersModule,
     CategoriesModule,
   ],

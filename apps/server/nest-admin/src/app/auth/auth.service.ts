@@ -3,10 +3,10 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as argon from 'argon2';
-import { UserEntity } from 'src/entities/user.entity';
+import { PersonEntity } from 'src/entities/person.entity';
 import { Not, Repository } from 'typeorm';
 
-import { AuthDto } from './dto';
+import { SignInDto, SignUpDto } from './dto';
 import { JwtPayload, Tokens } from './types';
 
 @Injectable()
@@ -14,36 +14,29 @@ export class AuthService {
   constructor(
     private jwtService: JwtService,
     private config: ConfigService,
-    @InjectRepository(UserEntity)
-    private usersRepository: Repository<UserEntity>,
+    @InjectRepository(PersonEntity)
+    private personsRepository: Repository<PersonEntity>,
   ) {}
 
-  async signupLocal(dto: AuthDto): Promise<Tokens> {
-    const hash = await argon.hash(dto.password);
+  async signupLocal(signUpDto: SignUpDto): Promise<Tokens> {
+    const hash = await argon.hash(signUpDto.password);
     try {
-      const data = {
-        email: dto.email,
-        nickname: dto.nickname,
-        password: dto.password,
-        hash,
-      };
-      const existedUser = await this.usersRepository.findOne({
-        where: [{ email: dto.email }, { nickname: dto.nickname }],
+      const existedUser = await this.personsRepository.findOne({
+        where: [{ email: signUpDto.email }, { login: signUpDto.login }],
       });
 
       if (existedUser) {
-        if (existedUser.email === dto.email)
+        if (existedUser.email === signUpDto.email)
           throw new ForbiddenException('User with this email already exists');
-        if (existedUser.nickname === dto.nickname)
+        if (existedUser.login === signUpDto.login)
           throw new ForbiddenException(
-            'User with this nickname already exists',
+            'User with this login already exists',
           );
       }
 
-      const user = await this.usersRepository.create(data);
-      await this.usersRepository.save(data);
-      const tokens = await this.getTokens(user.id, user.email);
-      await this.updateRtHash(user.id, tokens.refresh_token);
+      const createdUser = await this.personsRepository.save({ ...signUpDto, hash });
+      const tokens = await this.getTokens(createdUser.id, createdUser.email);
+      await this.updateRtHash(createdUser.id, tokens.refresh_token);
 
       return tokens;
     } catch (error: any) {
@@ -54,12 +47,14 @@ export class AuthService {
     }
   }
 
-  async signinLocal(dto: AuthDto): Promise<Tokens> {
-    const user = await this.usersRepository.findOneBy({ email: dto.email });
+  async signinLocal(signInDto: SignInDto): Promise<Tokens> {
+    const user = await this.personsRepository.findOne({
+      where: [{ login: signInDto.loginOrEmail }, { email: signInDto.loginOrEmail }]
+    });
 
     if (!user) throw new ForbiddenException('Access Denied');
 
-    const passwordMatches = await argon.verify(user.hash, dto.password);
+    const passwordMatches = await argon.verify(user.hash, signInDto.password);
     if (!passwordMatches) throw new ForbiddenException('Access Denied');
     const tokens = await this.getTokens(user.id, user.email);
     await this.updateRtHash(user.id, tokens.refresh_token);
@@ -68,7 +63,7 @@ export class AuthService {
   }
 
   async logout(userId: number): Promise<boolean> {
-    await this.usersRepository.update(
+    await this.personsRepository.update(
       { id: userId, hashedRt: Not(null) },
       { hashedRt: null },
     );
@@ -76,7 +71,7 @@ export class AuthService {
   }
 
   async refreshTokens(userId: number, rt: string): Promise<Tokens> {
-    const user = await this.usersRepository.findOneBy({ id: userId });
+    const user = await this.personsRepository.findOneBy({ id: userId });
     if (!user || !user.hashedRt) throw new ForbiddenException('Access Denied');
 
     const rtMatches = await argon.verify(user.hashedRt, rt);
@@ -90,7 +85,7 @@ export class AuthService {
 
   async updateRtHash(userId: number, rt: string): Promise<void> {
     const hash = await argon.hash(rt);
-    await this.usersRepository.update({ id: userId }, { hashedRt: hash });
+    await this.personsRepository.update({ id: userId }, { hashedRt: hash });
   }
 
   async getTokens(userId: number, email: string): Promise<Tokens> {
