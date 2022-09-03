@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   Column,
   CreateDateColumn,
@@ -7,22 +8,27 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Category } from './category.entity';
+import { CategoryEntity } from './category.entity';
 
 @Entity('masters')
-export class Master {
+export class MasterEntity {
+  @ApiProperty({ example: '1', description: 'Уникальный идентификатор' })
   @PrimaryGeneratedColumn()
   id: number;
 
+  @ApiProperty({ example: 'user@mail.ru', description: 'Почтовый адрес' })
   @Column()
   email: string;
 
+  @ApiProperty({ example: '79998887766', description: 'Телефон' })
   @Column()
   phone: string;
 
+  @ApiProperty({ example: 'Пупкин', description: 'Фамилия' })
   @Column({ nullable: true })
   surname: string;
 
+  @ApiProperty({ example: 'Василий', description: 'Имя' })
   @Column()
   name: string;
 
@@ -31,7 +37,7 @@ export class Master {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToOne(() => Category, (category: Category) => category.masters)
+  @ManyToOne(() => CategoryEntity, (category) => category.masters)
   @JoinColumn({ name: 'category_id' })
-  category: Category;
+  category: CategoryEntity;
 }

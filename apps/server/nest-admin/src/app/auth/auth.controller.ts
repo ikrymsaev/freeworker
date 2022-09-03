@@ -9,12 +9,14 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { Response } from 'express';
-import { GetCurrentUser, GetCurrentUserId, Public } from '../../common/decorators';
-import { RtGuard } from '../../common/guards';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto';
 import { Tokens } from './types';
+import { GetCurrentUser, GetCurrentUserId, Public } from 'src/common/decorators';
+import { RtGuard } from 'src/common/guards';
 
+@ApiTags('Авторизация')
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
@@ -22,6 +24,7 @@ export class AuthController {
   @Public()
   @Post('local/signup')
   @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: 'Зарегистрироваться' })
   async signupLocal(
     @Body() dto: AuthDto,
     @Res({ passthrough: true }) response: Response,
@@ -36,6 +39,7 @@ export class AuthController {
   @Public()
   @Post('local/signin')
   @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Залогиниться' })
   async signinLocal(
     @Body() dto: AuthDto,
     @Res({ passthrough: true }) response: Response,
@@ -51,6 +55,7 @@ export class AuthController {
 
   @Post('logout')
   @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Выйти' })
   async logout(
     @GetCurrentUserId() userId: number,
     @Res({ passthrough: true }) response: Response,
@@ -66,6 +71,7 @@ export class AuthController {
   @UseGuards(RtGuard)
   @Get('refresh')
   @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Обновить токен' })
   async refreshTokens(
     @GetCurrentUserId() userId: number,
     @GetCurrentUser('refresh_token') refreshToken: string,
@@ -80,3 +86,4 @@ export class AuthController {
     return tokens;
   }
 }
+

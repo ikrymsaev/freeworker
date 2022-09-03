@@ -3,8 +3,8 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as argon from 'argon2';
+import { UserEntity } from 'src/entities/user.entity';
 import { Not, Repository } from 'typeorm';
-import { User } from '../../entities/user.entity';
 
 import { AuthDto } from './dto';
 import { JwtPayload, Tokens } from './types';
@@ -14,8 +14,8 @@ export class AuthService {
   constructor(
     private jwtService: JwtService,
     private config: ConfigService,
-    @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    @InjectRepository(UserEntity)
+    private usersRepository: Repository<UserEntity>,
   ) {}
 
   async signupLocal(dto: AuthDto): Promise<Tokens> {
@@ -46,8 +46,8 @@ export class AuthService {
       await this.updateRtHash(user.id, tokens.refresh_token);
 
       return tokens;
-    } catch (error) {
-      if (error.code === 'P2002') {
+    } catch (error: any) {
+      if (error?.code === 'P2002') {
         throw new ForbiddenException('Credentials incorrect');
       }
       throw error;

@@ -4,6 +4,8 @@ import { APP_GUARD } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AtGuard } from '../common/guards';
 import { AuthModule } from './auth/auth.module';
+import { CategoriesModule } from './categories/categories.module';
+import { MastersModule } from './masters/masters.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -27,6 +29,8 @@ import { UsersModule } from './users/users.module';
     }),
     AuthModule,
     UsersModule,
+    MastersModule,
+    CategoriesModule,
   ],
   controllers: [],
   providers: [{
