@@ -9,18 +9,19 @@ import {
 } from 'typeorm';
 import { PersonEntity } from './person.entity';
 
+/** Модель пользователя. */
 @Entity('customers')
 export class CustomerEntity {
   @ApiProperty({ example: '1', description: 'Уникальный идентификатор' })
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 
   @OneToOne(() => PersonEntity)
   @JoinColumn()
-  person: PersonEntity;
+  person!: PersonEntity;
 }

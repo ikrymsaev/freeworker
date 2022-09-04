@@ -1,19 +1,20 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
+/** Создание пользователя. */
 export class CreatePersonDto {
   @IsNotEmpty()
   @IsString()
-  readonly email: string;
+  readonly email!: string;
 
   @IsNotEmpty()
   @IsString()
-  readonly login: string;
+  readonly login!: string;
 
   @IsNotEmpty()
   @IsString()
-  readonly firstName: string;
+  readonly firstName!: string;
 
   @IsNotEmpty()
   @IsString()
-  readonly password: string;
+  readonly password!: string;
 }

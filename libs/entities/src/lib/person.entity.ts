@@ -7,15 +7,16 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+/** Базовая модель пользователя. */
 @Entity('persons')
 export class PersonEntity {
   @ApiProperty({ example: '1', description: 'Уникальный идентификатор' })
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
   @ApiProperty({ example: 'Иван', description: 'Имя' })
-  firstName: string;
+  firstName!: string;
 
   @Column({ nullable: true })
   @ApiProperty({ example: 'Петров', description: 'Фамилия' })
@@ -23,11 +24,11 @@ export class PersonEntity {
 
   @ApiProperty({ example: 'pussyDestroyer666', description: 'Логин' })
   @Column({ unique: true })
-  login: string;
+  login!: string;
 
   @ApiProperty({ example: 'pussyDestroyer666@gmail.com', description: 'Электронная почта' })
   @Column({ unique: true })
-  email: string;
+  email!: string;
 
   @ApiProperty({ example: '+79998887766', description: 'Номер телефона' })
   @Column({ nullable: true })
@@ -35,12 +36,12 @@ export class PersonEntity {
 
   @ApiProperty({ example: '12345qwerty', description: 'Пароль' })
   @Column()
-  password: string;
+  password!: string;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 
   @ApiProperty({ description: 'токен' })
   @Column({ nullable: true })

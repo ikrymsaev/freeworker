@@ -1,7 +1,11 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nrwl/nx"],
+  "plugins": [
+    "@nrwl/nx",
+    "eslint-plugin-jsdoc",
+    "unused-imports"
+  ],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -18,7 +22,42 @@
               }
             ]
           }
-        ]
+        ],
+
+        "jsdoc/require-jsdoc": [
+          "error",
+          {
+              "require": {
+                  "FunctionDeclaration": true,
+                  "MethodDefinition": true,
+                  "ClassDeclaration": true,
+                  "ArrowFunctionExpression": true,
+                  "FunctionExpression": true
+              },
+              "contexts": [
+                  "TSInterfaceDeclaration",
+                  "TSEnumDeclaration",
+                  "TSPropertySignature",
+                  "TSMethodSignature",
+                  "TSTypeAliasDeclaration"
+              ],
+              "publicOnly": false
+          }
+      ],
+      "jsdoc/require-description-complete-sentence": "error",
+      "jsdoc/require-param": "off",
+      "jsdoc/check-alignment": "error",
+      "jsdoc/check-indentation": "error",
+      "jsdoc/newline-after-description": "error",
+      "jsdoc/no-types": "off",
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": [
+          "warn",
+          {
+              "vars": "all",
+              "args": "after-used"
+          }
+      ]
       }
     },
     {

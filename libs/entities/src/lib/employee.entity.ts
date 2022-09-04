@@ -11,22 +11,23 @@ import {
 import { CategoryEntity } from './category.entity';
 import { PersonEntity } from './person.entity';
 
+/** Модель работника. */
 @Entity('employees')
 export class EmployeeEntity {
   @ApiProperty({ example: '1', description: 'Уникальный идентификатор' })
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 
   @ManyToOne(() => CategoryEntity, (category) => category.employees)
   @JoinColumn({ name: 'category_id' })
-  category: CategoryEntity;
+  category!: CategoryEntity;
 
   @OneToOne(() => PersonEntity)
   @JoinColumn()
-  person: PersonEntity;
+  person!: PersonEntity;
 }

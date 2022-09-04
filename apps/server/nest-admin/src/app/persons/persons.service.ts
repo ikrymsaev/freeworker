@@ -4,8 +4,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreatePersonDto } from './dto/person.dto';
 
+/** Сервис работы с пользователями. */
 @Injectable()
 export class PersonsService {
+  /** Конструктор. */
   constructor(
     @InjectRepository(PersonEntity)
     private personsRepository: Repository<PersonEntity>,
