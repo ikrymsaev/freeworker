@@ -17,8 +17,8 @@ export class CategoryEntity {
     description: 'Описание',
   })
   @Column({ nullable: true })
-  description: string;
+  description?: string;
 
   @OneToMany(() => EmployeeEntity, (employee) => employee.category)
-  employees: EmployeeEntity[];
+  employees?: EmployeeEntity[];
 }

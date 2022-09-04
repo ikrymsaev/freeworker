@@ -21,30 +21,32 @@ import { RtGuard } from 'src/common/guards';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @Public()
-  @Post('local/signup')
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Зарегистрироваться' })
-  async signupLocal(
+
+  @Public()
+  @Post('local/signup')
+  async signUpLocal(
     @Body() dto: SignUpDto,
     @Res({ passthrough: true }) response: Response,
   ): Promise<Tokens> {
-    const tokens = await this.authService.signupLocal(dto);
+    const tokens = await this.authService.signUpLocal(dto);
     if (tokens) {
       response.cookie('refresh_token', tokens.refresh_token);
       return tokens;
     }
   }
 
-  @Public()
-  @Post('local/signin')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Залогиниться' })
-  async signinLocal(
+
+  @Public()
+  @Post('local/signin')
+  async signInLocal(
     @Body() dto: SignInDto,
     @Res({ passthrough: true }) response: Response,
   ): Promise<Tokens> {
-    const tokens = await this.authService.signinLocal(dto);
+    const tokens = await this.authService.signInLocal(dto);
     if (tokens) {
       response.cookie('refresh_token', tokens.refresh_token, {
         httpOnly: true,
@@ -53,10 +55,11 @@ export class AuthController {
     }
   }
 
-  @Public()
-  @Post('logout')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Выйти' })
+
+  @Public()
+  @Post('logout')
   async logout(
     @GetCurrentUserId() userId: number,
     @Res({ passthrough: true }) response: Response,
@@ -68,11 +71,12 @@ export class AuthController {
     return result;
   }
 
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Обновить токен' })
+
   @Public()
   @UseGuards(RtGuard)
   @Get('refresh')
-  @HttpCode(HttpStatus.OK)
-  @ApiOperation({ summary: 'Обновить токен' })
   async refreshTokens(
     @GetCurrentUserId() userId: number,
     @GetCurrentUser('refresh_token') refreshToken: string,

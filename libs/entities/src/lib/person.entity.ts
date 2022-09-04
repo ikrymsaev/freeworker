@@ -17,9 +17,9 @@ export class PersonEntity {
   @ApiProperty({ example: 'Иван', description: 'Имя' })
   firstName: string;
 
-  @Column()
+  @Column({ nullable: true })
   @ApiProperty({ example: 'Петров', description: 'Фамилия' })
-  lastName: string;
+  lastName?: string;
 
   @ApiProperty({ example: 'pussyDestroyer666', description: 'Логин' })
   @Column({ unique: true })
@@ -30,8 +30,8 @@ export class PersonEntity {
   email: string;
 
   @ApiProperty({ example: '+79998887766', description: 'Номер телефона' })
-  @Column()
-  phone: string;
+  @Column({ nullable: true })
+  phone?: string;
 
   @ApiProperty({ example: '12345qwerty', description: 'Пароль' })
   @Column()
@@ -44,9 +44,9 @@ export class PersonEntity {
 
   @ApiProperty({ description: 'токен' })
   @Column({ nullable: true })
-  hash: string;
+  hash?: string;
 
   @ApiProperty({ description: 'рефреш токен' })
   @Column({ nullable: true })
-  hashedRt: string | null;
+  hashedRt?: string | null;
 }

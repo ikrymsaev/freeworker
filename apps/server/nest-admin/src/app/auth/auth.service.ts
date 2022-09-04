@@ -18,7 +18,8 @@ export class AuthService {
     private personsRepository: Repository<PersonEntity>,
   ) {}
 
-  async signupLocal(signUpDto: SignUpDto): Promise<Tokens> {
+  /** Зарегистрироваться */
+  async signUpLocal(signUpDto: SignUpDto): Promise<Tokens> {
     const hash = await argon.hash(signUpDto.password);
     try {
       const existedUser = await this.personsRepository.findOne({
@@ -47,7 +48,8 @@ export class AuthService {
     }
   }
 
-  async signinLocal(signInDto: SignInDto): Promise<Tokens> {
+  /** Авторизоваться */
+  async signInLocal(signInDto: SignInDto): Promise<Tokens> {
     const user = await this.personsRepository.findOne({
       where: [{ login: signInDto.loginOrEmail }, { email: signInDto.loginOrEmail }]
     });
