@@ -1,0 +1,16 @@
+.layout {
+  display: grid;
+  grid-template-areas:
+    'header header'
+    'sidebar main';
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 64px 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main {
+  grid-area: main;
+  overflow-y: auto;
+  padding: 16px 24px;
+}

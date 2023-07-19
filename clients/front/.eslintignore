@@ -1,0 +1,6 @@
+**/.eslintrc.cjs
+**/*.json
+**/*.txt
+**/__mocks__/*
+dist
+vite.config.ts

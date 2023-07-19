@@ -1,0 +1,12 @@
+{
+  "name": "freeworker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "docker-compose up --build -d --force-recreate",
+    "stop": "docker-compose down"
+  },
+  "author": "ikrymsaev@gmail.com",
+  "license": "ISC"
+}

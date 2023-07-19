@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  min-width: 360px;
+  overflow-y: hidden;
+}
+.navbar {
+  border-bottom: 1px solid lightgray;
+}
+.formToggler {
+  align-items: center;
+  border-top: 1px solid lightgray;
+  display: flex;
+  justify-content: center;
+}

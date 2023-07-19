@@ -1,0 +1,21 @@
+:root {
+  /* Цвета */
+  --color-white: #ffffff;
+  --color-text: #303030;
+
+  --color-primary: #8b08b6;
+  --color-secondary: #08b68b;
+
+  --color-neutral: #535353;
+  --color-dasabled: #808080;
+  --color-hover: #f6e0fe;
+  /* Статусы. */
+  --color-success: #2ca853;
+  --color-error: #ff5555;
+  --color-warning: #ff9419;
+  --color-info: #1a73e8;
+
+  --color-theme: #c8c7ff;
+
+  --border-sm: 1px solid var(--color-neutral);
+}

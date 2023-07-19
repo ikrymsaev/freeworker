@@ -1,0 +1,37 @@
+.header {
+  background-color: var(--color-theme);
+  box-shadow: -3px 3px 10px #c1c1c1;
+  display: grid;
+  grid-area: header;
+  grid-template-areas: 'logoBlock . accountBlock';
+  grid-template-columns: auto 1fr auto;
+  width: 100%;
+
+  &_icon {
+    color: var(--color-neutral);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-text);
+    }
+  }
+}
+
+.logo {
+  &_block {
+    align-items: center;
+    cursor: pointer;
+    display: grid;
+    gap: 20px;
+
+    grid-area: logoBlock;
+    grid-template-columns: auto auto;
+    padding: 18px 24px;
+  }
+}
+
+.title {
+  color: var(--color-text);
+  font-size: 25px;
+  line-height: 28px;
+}

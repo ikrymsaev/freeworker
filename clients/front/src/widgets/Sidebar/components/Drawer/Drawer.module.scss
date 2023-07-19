@@ -1,0 +1,14 @@
+.drawer {
+  box-shadow: -3px 3px 10px inset #c1c1c1;
+  display: grid;
+  grid-area: sidebar;
+  grid-template-rows: 1fr auto;
+  padding: 0 16px 16px 0;
+  width: 256px;
+}
+
+.closed {
+  grid-template-rows: 1fr auto;
+  padding: 0 0 16px 0;
+  width: 72px;
+}

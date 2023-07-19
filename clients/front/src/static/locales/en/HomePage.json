@@ -1,0 +1,4 @@
+{
+  "hello_default": "Hi there, wellcome",
+  "hello_user": "Hi {{userName}}, wellcome to {{appName}}"
+}

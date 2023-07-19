@@ -1,0 +1,52 @@
+.contanier {
+  align-items: center;
+  border-radius: 5px;
+  display: flex;
+  margin: 20px;
+  max-width: 500px;
+  opacity: 0.85;
+  padding: 15px;
+  position: relative;
+  transition: 0.3s;
+  &:hover {
+    opacity: 1;
+  }
+}
+.title {
+  font-weight: 600;
+}
+.content {
+  flex: 1 1 100%;
+  margin: 0 10px;
+}
+.message {
+  margin-top: 10px;
+}
+.error {
+  background-color: rgb(253, 237, 237);
+  color: rgb(95, 33, 32);  
+  &_icon {
+    color: rgb(95, 33, 32);
+  }
+}
+.warning {
+  background-color: rgb(255 244 229);
+  color: rgb(102, 60, 0);
+  &_icon {
+    color: rgb(102, 60, 0);
+  } 
+}
+.info {
+  background-color: rgb(229 246 253);
+  color: rgb(1, 67, 97); 
+  &_icon {
+    color: rgb(1, 67, 97);
+  }  
+}
+.success {
+  background-color: rgb(237, 247, 237);
+  color: rgb(30, 70, 32);  
+  &_icon {
+    color: rgb(30, 70, 32);
+  }  
+}

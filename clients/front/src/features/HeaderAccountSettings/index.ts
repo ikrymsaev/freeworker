@@ -1,0 +1,1 @@
+export { HeaderAccountSettings } from './HeaderAccountSettings';

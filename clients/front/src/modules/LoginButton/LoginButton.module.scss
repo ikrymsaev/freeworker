@@ -1,0 +1,13 @@
+.container {
+  align-items: center;
+  display: grid;
+  gap: 24px;
+
+  grid-area: accountBlock;
+  grid-template-columns: auto;
+  padding: 12px 24px;
+}
+.login {
+  color: var(--color-text);
+  font-size: 16px;
+}

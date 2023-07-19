@@ -1,0 +1,15 @@
+{
+  "Action": {
+    "create": "create"
+  },
+  "Lang": {
+    "language": "language",
+    "locale": {
+      "ru": "Russian",
+      "en": "English"
+    }
+  },
+  "Navigation": {
+    "toHome": "To home"
+  }
+}

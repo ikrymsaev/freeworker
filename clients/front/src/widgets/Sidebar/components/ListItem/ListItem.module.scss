@@ -1,0 +1,113 @@
+.wrapper {
+  margin-bottom: 4px;
+}
+
+.content {
+  border-radius: 0 12px 12px 0;
+  cursor: pointer;
+  display: grid;
+  grid-template-areas: 'indicator . mainIcon . text ';
+  grid-template-columns: 4px 28px 24px 16px 120px 24px;
+  height: 48px;
+  transition: 0.4s;
+  width: 240px;
+  &:hover {
+    background-color: var(--color-hover);
+  }
+}
+
+.subItem {
+  border-radius: 12px;
+  grid-template-areas: 'text';
+  grid-template-columns: auto;
+  margin: 0 16px;
+  padding-left: 56px;
+  width: 208px;
+}
+
+.subItemActive {
+  background-color: var(--color-primary);
+}
+
+.indicator {
+  background: var(--color-primary);
+  border-radius: 0 3px 3px 0;
+  grid-area: indicator;
+
+  height: 100%;
+  width: 4px;
+}
+
+.mainIcon {
+  align-self: center;
+  color: var(--color-neutral);
+  grid-area: mainIcon;
+}
+
+.mainIconDisabled {
+  color: var(--black-alpha-4);
+}
+
+.text {
+  align-self: center;
+  color: var(--black-alpha-6);
+  grid-area: text;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.textDisabled {
+  color: var(--black-alpha-4);
+}
+
+.subItemText {
+  border-radius: 12px;
+}
+
+.expandIcon {
+  color: var(--black-alpha-6);
+  grid-area: expandIcon;
+}
+
+.expand {
+  grid-template-areas: 'indicator . mainIcon . text . expandIcon';
+  grid-template-columns: 4px 28px 24px 16px 120px 8px 24px;
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+.disabled:hover {
+  background-color: var(--white);
+}
+
+.chosenIcon {
+  color: var(--black-alpha-87);
+}
+
+.chosenText {
+  color: var(--black-alpha-87);
+}
+
+.expandIconDisabled {
+  color: var(--black-alpha-4);
+}
+.chosenExpandIcon {
+  color: var(--black-alpha-87);
+}
+
+.pressed:hover {
+  background-color: var(--black-alpha-12);
+}
+
+.narrow {
+  border-radius: 0 12px 12px 0;
+  cursor: pointer;
+  display: grid;
+  grid-template-areas: 'indicator . mainIcon . ';
+  grid-template-columns: 4px 12px 24px 16px;
+  height: 48px;
+  width: 56px;
+}

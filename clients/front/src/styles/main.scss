@@ -1,0 +1,64 @@
+@import "./fonts";
+@import "./materialdesignicons";
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+}
+h1,
+h2,
+p,
+pre {
+  margin: 0;
+}
+*,
+::before,
+::after {
+  border-color: currentColor;
+  border-style: solid;
+  border-width: 0;
+  box-sizing: border-box;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+svg {
+  display: block;
+  shape-rendering: auto;
+  text-rendering: optimizeLegibility;
+}
+input,
+textarea {
+  font-family: "Roboto", sans-serif;
+}
+
+button {
+  font-family: "Roboto", sans-serif;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  cursor: all-scroll;
+  height: 8px;
+  width: 16px;
+}
+
+::-webkit-scrollbar-track {
+  border: solid 3px transparent;
+  box-shadow: inset 0 0 3px 3px transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border: solid 3px transparent;
+  border-radius: 16px;
+  box-shadow: inset 0 0 3px 3px var(--color-theme);
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
